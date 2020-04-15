@@ -1,0 +1,11 @@
+az acr repository list -n <azure-container-registry-name>
+
+https://docs.microsoft.com/en-us/azure/app-service/containers/tutorial-custom-docker-image
+az appservice plan create --name myAppServicePlan --resource-group myResourceGroup --sku F1 --is-linux
+
+az webapp create --resource-group myResourceGroup --plan myAppServicePlan --name <app-name> --deployment-container-image-name <azure-container-registry-name>.azurecr.io/mydockerimage:v1.0.0
+
+az webapp config container set --name <app-name> --resource-group myResourceGroup --docker-custom-image-name <azure-container-registry-name>.azurecr.io/mydockerimage:v1.0.0 --docker-registry-server-url https://<azure-container-registry-name>.azurecr.io --docker-registry-server-user <registry-username> --docker-registry-server-password <password>
+
+
+az webapp config appsettings set --resource-group myResourceGroup --name <app-name> --settings WEBSITES_PORT=8000

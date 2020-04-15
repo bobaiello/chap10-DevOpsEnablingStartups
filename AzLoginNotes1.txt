@@ -1,0 +1,73 @@
+PS C:\DevOpsForArchitects> az login
+You have logged in. Now let us find all the subscriptions to which you have access...
+[
+  {
+    "cloudName": "AzureCloud",
+    "id": "4bb0ea6b-42f3-3b36-a7fb-fbe77dea77fd",
+    "isDefault": true,
+    "name": "Visual Studio Enterprise Subscription",
+    "state": "Enabled",
+    "tenantId": "7f786e85-2c71-4bbe-a786-71f92f5e7e38",
+    "user": {
+      "name": "bob@devopsforarchitects.com",
+      "type": "user"
+    }
+  }
+]
+
+PS C:\DevOpsForArchitects> az group create --name myResourceGroup2 --location "EastUS2"
+{
+  "id": "/subscriptions/4bb0ea6b-42f3-3b36-a7fb-fbe77dea77fd/resourceGroups/myResourceGroup",
+  "location": "eastus2",
+  "managedBy": null,
+  "name": "myResourceGroup",
+  "properties": {
+    "provisioningState": "Succeeded"
+  },
+  "tags": null,
+  "type": "Microsoft.Resources/resourceGroups"
+}
+
+PS C:\DevOpsForArchitects> az acr create --name dfaRegistry --resource-group myResourceGroup --sku Basic --admin-enabled true
+{
+  "adminUserEnabled": true,
+  "creationDate": "2020-04-15T20:44:14.607806+00:00",
+  "id": "/subscriptions/4bb0ea6b-42f3-3b36-a7fb-fbe77dea77fd/resourceGroups/myResourceGroup/providers/Microsoft.ContainerRegistry/registries/dfaRegistry",
+  "location": "eastus",
+  "loginServer": "dfaregistry.azurecr.io",
+  "name": "dfaRegistry",
+  "networkRuleSet": null,
+  "policies": {
+    "quarantinePolicy": {
+      "status": "disabled"
+    },
+    "retentionPolicy": {
+      "days": 7,
+      "lastUpdatedTime": "2020-04-15T20:44:15.549664+00:00",
+      "status": "disabled"
+    },
+    "trustPolicy": {
+      "status": "disabled",
+      "type": "Notary"
+    }
+  },
+  "provisioningState": "Succeeded",
+  "resourceGroup": "myResourceGroup",
+  "sku": {
+    "name": "Basic",
+    "tier": "Basic"
+  },
+  "status": null,
+  "storageAccount": null,
+  "tags": {},
+  "type": "Microsoft.ContainerRegistry/registries"
+}
+
+
+
+
+PS C:\DevOpsForArchitects> az acr repository list -n dfaregistry                                                                             []
+[]
+
+
+
